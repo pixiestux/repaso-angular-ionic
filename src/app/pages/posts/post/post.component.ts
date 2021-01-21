@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter  } from '@angular/core';
 
 @Component({
   selector: 'app-post',
@@ -7,11 +7,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  @Input() mensaje;
+  @Input() mensaje;// para recibir parametros del componente padre
+  @Output() clickPost = new EventEmitter<number>();// para mandar info al componente padre de tipo NUMBER
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClick(){
+    this.clickPost.emit(this.mensaje.id);
   }
 
 }
